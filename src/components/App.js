@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import Block from './Block';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      palette: ['white', 'blue', 'orange', 'pink', 'yellow', 'green', 'red'],
+      palette: ['aqua', 'blue', 'white', 'orange', 'green', 'yellow', 'red', 'pink', 'silver'],
       colorIndex: 0
     };
     this.changeColor = this.changeColor.bind(this);
   }
-
   changeColor() {
     if (this.state.colorIndex === this.state.palette.length - 1) {
       this.setState({
@@ -21,18 +21,13 @@ export default class App extends Component {
           colorIndex: prevState.colorIndex + 1
         };
       });
-      console.log(this.state.colorIndex);
     }
+    return this.state.palette[this.state.colorIndex];
   }
 
   render() {
     const blocks = this.state.palette.map((color, index) => (
-      <div
-        onClick={this.changeColor}
-        key={index}
-        className="block"
-        style={{ backgroundColor: this.state.palette[this.state.colorIndex] }}
-      />
+      <Block key={index} color={color} changeColor={this.changeColor} />
     ));
     return <div className="container">{blocks}</div>;
   }
