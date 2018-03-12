@@ -21,7 +21,7 @@
         "no-console": "off",
         "indent": [
             "error",
-            4
+            2
         ],
         "quotes": [
             "error",
