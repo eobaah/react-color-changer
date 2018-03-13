@@ -7,17 +7,17 @@ export default class App extends Component {
     this.state = {
       palette: ['aqua', 'blue', 'white', 'orange', 'green', 'yellow', 'red', 'pink', 'silver'],
       colorIndex: 0,
-      blockToColorIndex: {0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9}
+      blockToColorIndex: { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }
     };
     this.changeColor = this.changeColor.bind(this);
   }
 
   changeColor(blockIndex) {
-    let newGlobalColorIndex = (this.state.colorIndex + 1) % (this.state.palette.length);
+    let newGlobalColorIndex = (this.state.colorIndex + 1) % this.state.palette.length;
     let newBlockColorIndex = newGlobalColorIndex;
-    let newBlockToColorIndex = Object.assign({}, this.state.blockToColorIndex, {[blockIndex]: newBlockColorIndex});
+    let newBlockToColorIndex = Object.assign({}, this.state.blockToColorIndex, { [blockIndex]: newBlockColorIndex });
 
-    this.setState({colorIndex: newGlobalColorIndex, blockToColorIndex: newBlockToColorIndex});
+    this.setState({ colorIndex: newGlobalColorIndex, blockToColorIndex: newBlockToColorIndex });
   }
 
   getBlockColor(index) {
@@ -27,10 +27,7 @@ export default class App extends Component {
 
   render() {
     const blocks = this.state.palette.map((color, index) => (
-      <Block key={index}
-        index={index}
-        color={this.getBlockColor(index)}
-        changeColor={this.changeColor} />
+      <Block key={index} index={index} color={this.getBlockColor(index)} changeColor={this.changeColor} />
     ));
     return <div className="container">{blocks}</div>;
   }
