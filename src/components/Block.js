@@ -4,19 +4,16 @@ import PropTypes from 'prop-types';
 export default class Block extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      blockNewColor: this.props.color
-    };
-    this.clickToChangeColor = this.clickToChangeColor.bind(this);
+    this.onColorClick = this.onColorClick.bind(this);
   }
 
-  clickToChangeColor() {
-    this.setState({ blockNewColor: this.props.changeColor() });
+  onColorClick() {
+    this.props.changeColor(this.props.index);
   }
 
   render() {
     return (
-      <div onClick={this.clickToChangeColor} className="block" style={{ backgroundColor: this.state.blockNewColor }} />
+      <div onClick={this.onColorClick} className="block" style={{ backgroundColor: this.props.color }} />
     );
   }
 }
