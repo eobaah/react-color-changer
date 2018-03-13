@@ -12,13 +12,12 @@ export default class Block extends Component {
   }
 
   render() {
-    return (
-      <div onClick={this.onColorClick} className="block" style={{ backgroundColor: this.props.color }} />
-    );
+    return <div onClick={this.onColorClick} className="block" style={{ backgroundColor: this.props.color }} />;
   }
 }
 
 Block.propTypes = {
   color: PropTypes.string,
-  changeColor: PropTypes.func
+  changeColor: PropTypes.func,
+  index: PropTypes.number
 };
